@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <button type="button">Scan</button>
+
+        <script type="text/javascript">
+            $('button').on('click', function() {
+ 
+                let ws = new WebSocket('ws://127.0.0.1:8000/');
+ 
+                ws.onopen = function() {
+                    alert("Open");
+                    let msg = {
+                        text: "Scan please",
+                        some_id: 42
+                    };
+                    ws.send(JSON.stringify(msg));
+                };
+ 
+                ws.onerror = function(err){
+                    alert(Object.keys(err));
+                };
+ 
+                ws.onmessage = function(evt) {
+                    request_mess = JSON.parse(evt.data);
+                    if (request_mess.code){
+                        if(request_mess.code == 200){
+                            location.reload();
+                        }
+                        else {
+                            alert('Something wrong! ' + request_mess.code);
+\                        }
+                    }
+                };
+            });
+        </script>
+    
+    </body>
+</html>
