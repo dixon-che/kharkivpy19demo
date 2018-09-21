@@ -1,0 +1,5 @@
+tornado
+wxPython
+urllib3
+requests
+pyinsane

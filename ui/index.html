@@ -8,10 +8,10 @@
         <script type="text/javascript">
             $('button').on('click', function() {
  
-                let ws = new WebSocket('ws://127.0.0.1:8000/');
+                let ws = new WebSocket('ws://127.0.0.1:8000/web_socket/');
  
                 ws.onopen = function() {
-                    alert("Open");
+                    //alert("Open");
                     let msg = {
                         text: "Scan please",
                         some_id: 42
@@ -31,11 +31,10 @@
                         }
                         else {
                             alert('Something wrong! ' + request_mess.code);
-\                        }
+                        }
                     }
                 };
             });
         </script>
-    
     </body>
 </html>
